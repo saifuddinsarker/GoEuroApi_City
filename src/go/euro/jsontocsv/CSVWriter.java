@@ -16,13 +16,19 @@ public class CSVWriter {
 
     public void writeAsCSV(List<Map<String, String>> flatJson, String fileName) throws FileNotFoundException {
         Set<String> headers = collectHeaders(flatJson);
-        String output = StringUtils.join(headers.toArray(), ",") + "\n";
-        for (Map<String, String> map : flatJson) {
-        
-            output = output + getCommaSeperatedRow(headers, map) + "\n";
-            
+        if(headers.size()!=0){
+        	 String output = StringUtils.join(headers.toArray(), ",") + "\n";
+             for (Map<String, String> map : flatJson) {
+             
+                 output = output + getCommaSeperatedRow(headers, map) + "\n";
+                 
+             }
+             writeToFile(output, fileName);
+        } else{
+        	
+        	JOptionPane.showMessageDialog(null, "No result found, No CSV generated !");
         }
-        writeToFile(output, fileName);
+       
     }
 
     private void writeToFile(String output, String fileName) throws FileNotFoundException {
