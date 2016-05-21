@@ -3,6 +3,8 @@
  */
 package go.euro.api;
 
+import java.lang.reflect.Array;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +19,11 @@ public class ReadApi {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String CityName=args[0];
+		String CityName= "";
+		for (int i=0;i<Array.getLength(args);i++){
+			 CityName += (i==0) ?  args[i] :  " " + args[i];
+		}
+		
 		if(ValidateInputString(CityName)){
 			System.out.println("Getting result for : " + CityName);		
 			String JsonString = null;
